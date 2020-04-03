@@ -7,4 +7,17 @@ body,html{overflow-y:auto}.swing-transition{transition:.2s cubic-bezier(.25,.8,.
     background-color: #bca06f !important;
     border-color: #bca06f !important;
 }
+.primary {
+    background-color: #17162c !important;
+    border-color: #17162c !important;
+}
+.secondary {
+    background-color: #757483 !important;
+    border-color: #757483 !important;
+}
+.v-footer--absolute {
+    bottom: 0;
+    left :0;
+    position: relative;
+}
 /*# sourceMappingURL=app.f4f9d6b47eef03a722828322a637e5aa.css.map */

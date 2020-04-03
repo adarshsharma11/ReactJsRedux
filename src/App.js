@@ -1,11 +1,14 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
-import Home from "./components/Home/home";
+import Root from "./router/root"
+import store from "./store";
+import { Provider } from "react-redux";
 
 function App() {
   return (
-    <Home/>
+      <Provider store={store}>
+       <Root/>
+      </Provider>
   );
 }
 
