@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import halo from "../../public/assets/img/logo/halo.png"
 import {MdOpenInNew, MdArrowUpward} from "react-icons/md"
 import {DEX_API_URL} from "../../helpers/constants/constants"
+import { Link } from 'react-router-dom';
 
 const Home = props => {
 
@@ -49,8 +50,8 @@ const Home = props => {
                         </div>
                         {" "}
                         {/**/}{" "}
-                        <a
-                            href="/help"
+                        <Link
+                            to="/help"
                             className="v-btn v-btn--large v-btn--router theme--dark"
                             style={{
                                 backgroundColor: "rgb(79, 109, 142)",
@@ -60,7 +61,7 @@ const Home = props => {
                             <div className="v-btn__content">
                                 <span>Get Started Now</span>
                             </div>
-                        </a>
+                        </Link>
                     </div>
                     {" "}
                     <div className="container" style={{maxWidth: 1280}}>
