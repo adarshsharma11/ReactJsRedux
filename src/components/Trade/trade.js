@@ -1,4 +1,4 @@
-import React , {useState} from 'react';
+import React from 'react';
 import Aside from "../Layout/Aside/aside";
 import { Link } from 'react-router-dom';
 import TradingViewWidget, { Themes } from 'react-tradingview-widget';
@@ -30,6 +30,10 @@ const  Trade = props => {
                                             theme={Themes.LIGHT}
                                             locale="en"
                                             autosize
+                                            allowTransparency="true"
+                                            scrolling="no"
+                                            allowFullScreen
+                                            style={{ display: "block", width: "100%", height: "100%" }}
                                         />
                                      {/*   <iframe
                                             id="tradingview_1b14a"
@@ -403,9 +407,9 @@ const  Trade = props => {
                                                                 </td>{" "}
                                                                 <td>450.00000000</td>{" "}
                                                                 <td>
-                                                                    <a href="#" className="buy">
+                                                                    <Link to="#" className="buy">
                                                                         0.00000300
-                                                                    </a>
+                                                                    </Link>
                                                                 </td>
                                                             </tr>
                                                             </tbody>
@@ -459,169 +463,169 @@ const  Trade = props => {
                                                             <tbody>
                                                             <tr className="text-xs-right">
                                                                 <td className id="sellOrderBaseMeasure">
-                                                                    <a href="#" className="sell">
+                                                                    <Link to="#" className="sell">
                                                                         0.00002950
-                                                                    </a>
+                                                                    </Link>
                                                                 </td>{" "}
                                                                 <td>20,000.00000000</td> <td>20,000.00000000</td>
                                                             </tr>
                                                             <tr className="text-xs-right">
                                                                 <td>
-                                                                    <a href="#" className="sell">
+                                                                    <Link to="#" className="sell">
                                                                         0.00003000
-                                                                    </a>
+                                                                    </Link>
                                                                 </td>{" "}
                                                                 <td>21,549.00000000</td> <td>1,549.00000000</td>
                                                             </tr>
                                                             <tr className="text-xs-right">
                                                                 <td>
-                                                                    <a href="#" className="sell">
+                                                                    <Link to="#" className="sell">
                                                                         0.00003600
-                                                                    </a>
+                                                                    </Link>
                                                                 </td>{" "}
                                                                 <td>41,549.00000000</td> <td>20,000.00000000</td>
                                                             </tr>
                                                             <tr className="text-xs-right">
                                                                 <td>
-                                                                    <a href="#" className="sell">
+                                                                    <Link to="#" className="sell">
                                                                         0.00004000
-                                                                    </a>
+                                                                    </Link>
                                                                 </td>{" "}
                                                                 <td>42,549.00000000</td> <td>1,000.00000000</td>
                                                             </tr>
                                                             <tr className="text-xs-right">
                                                                 <td>
-                                                                    <a href="#" className="sell">
+                                                                    <Link to="#" className="sell">
                                                                         0.00006000
-                                                                    </a>
+                                                                    </Link>
                                                                 </td>{" "}
                                                                 <td>62,549.00000000</td> <td>20,000.00000000</td>
                                                             </tr>
                                                             <tr className="text-xs-right">
                                                                 <td>
-                                                                    <a href="#" className="sell">
+                                                                    <Link to="#" className="sell">
                                                                         0.00042600
-                                                                    </a>
+                                                                    </Link>
                                                                 </td>{" "}
                                                                 <td>67,549.00000000</td> <td>5,000.00000000</td>
                                                             </tr>
                                                             <tr className="text-xs-right">
                                                                 <td>
-                                                                    <a href="#" className="sell">
+                                                                    <Link to="#" className="sell">
                                                                         0.00042740
-                                                                    </a>
+                                                                    </Link>
                                                                 </td>{" "}
                                                                 <td>97,549.00000000</td> <td>30,000.00000000</td>
                                                             </tr>
                                                             <tr className="text-xs-right">
                                                                 <td>
-                                                                    <a href="#" className="sell">
+                                                                    <Link to="#" className="sell">
                                                                         0.00043480
-                                                                    </a>
+                                                                    </Link>
                                                                 </td>{" "}
                                                                 <td>101,549.00000000</td> <td>4,000.00000000</td>
                                                             </tr>
                                                             <tr className="text-xs-right">
                                                                 <td>
-                                                                    <a href="#" className="sell">
+                                                                    <Link to="#" className="sell">
                                                                         0.00043497
-                                                                    </a>
+                                                                    </Link>
                                                                 </td>{" "}
                                                                 <td>123,719.70000000</td> <td>22,170.70000000</td>
                                                             </tr>
                                                             <tr className="text-xs-right">
                                                                 <td>
-                                                                    <a href="#" className="sell">
+                                                                    <Link to="#" className="sell">
                                                                         0.00043500
-                                                                    </a>
+                                                                    </Link>
                                                                 </td>{" "}
                                                                 <td>123,904.70000000</td> <td>185.00000000</td>
                                                             </tr>
                                                             <tr className="text-xs-right">
                                                                 <td>
-                                                                    <a href="#" className="sell">
+                                                                    <Link to="#" className="sell">
                                                                         0.00044840
-                                                                    </a>
+                                                                    </Link>
                                                                 </td>{" "}
                                                                 <td>123,967.31615197</td> <td>62.61615197</td>
                                                             </tr>
                                                             <tr className="text-xs-right">
                                                                 <td>
-                                                                    <a href="#" className="sell">
+                                                                    <Link href="#" className="sell">
                                                                         0.00049000
-                                                                    </a>
+                                                                    </Link>
                                                                 </td>{" "}
                                                                 <td>123,975.71615197</td> <td>8.40000000</td>
                                                             </tr>
                                                             <tr className="text-xs-right">
                                                                 <td>
-                                                                    <a href="#" className="sell">
+                                                                    <Link to="#" className="sell">
                                                                         0.00052989
-                                                                    </a>
+                                                                    </Link>
                                                                 </td>{" "}
                                                                 <td>141,876.71560598</td> <td>17,900.99945401</td>
                                                             </tr>
                                                             <tr className="text-xs-right">
                                                                 <td>
-                                                                    <a href="#" className="sell">
+                                                                    <Link to="#" className="sell">
                                                                         0.00052990
-                                                                    </a>
+                                                                    </Link>
                                                                 </td>{" "}
                                                                 <td>151,876.71560598</td> <td>10,000.00000000</td>
                                                             </tr>
                                                             <tr className="text-xs-right">
                                                                 <td>
-                                                                    <a href="#" className="sell">
+                                                                    <Link to="#" className="sell">
                                                                         0.00054990
-                                                                    </a>
+                                                                    </Link>
                                                                 </td>{" "}
                                                                 <td>161,876.71560598</td> <td>10,000.00000000</td>
                                                             </tr>
                                                             <tr className="text-xs-right">
                                                                 <td>
-                                                                    <a href="#" className="sell">
+                                                                    <Link to="#" className="sell">
                                                                         0.00056330
-                                                                    </a>
+                                                                    </Link>
                                                                 </td>{" "}
                                                                 <td>162,876.71560598</td> <td>1,000.00000000</td>
                                                             </tr>
                                                             <tr className="text-xs-right">
                                                                 <td>
-                                                                    <a href="#" className="sell">
+                                                                    <Link href="#" className="sell">
                                                                         0.00056990
-                                                                    </a>
+                                                                    </Link>
                                                                 </td>{" "}
                                                                 <td>172,876.71560598</td> <td>10,000.00000000</td>
                                                             </tr>
                                                             <tr className="text-xs-right">
                                                                 <td>
-                                                                    <a href="#" className="sell">
+                                                                    <Link to="#" className="sell">
                                                                         0.00058990
-                                                                    </a>
+                                                                    </Link>
                                                                 </td>{" "}
                                                                 <td>182,876.71560598</td> <td>10,000.00000000</td>
                                                             </tr>
                                                             <tr className="text-xs-right">
                                                                 <td>
-                                                                    <a href="#" className="sell">
+                                                                    <Link href="#" className="sell">
                                                                         0.00060000
-                                                                    </a>
+                                                                    </Link>
                                                                 </td>{" "}
                                                                 <td>202,876.71560598</td> <td>20,000.00000000</td>
                                                             </tr>
                                                             <tr className="text-xs-right">
                                                                 <td>
-                                                                    <a href="#" className="sell">
+                                                                    <Link href="#" className="sell">
                                                                         0.00062000
-                                                                    </a>
+                                                                    </Link>
                                                                 </td>{" "}
                                                                 <td>239,202.71560598</td> <td>36,326.00000000</td>
                                                             </tr>
                                                             <tr className="text-xs-right">
                                                                 <td>
-                                                                    <a href="#" className="sell">
+                                                                    <Link href="#" className="sell">
                                                                         69.00000000
-                                                                    </a>
+                                                                    </Link>
                                                                 </td>{" "}
                                                                 <td>239,203.71560598</td> <td>1.00000000</td>
                                                             </tr>
@@ -919,6 +923,8 @@ const  Trade = props => {
                                                 Rows per page:
                                                 <div
                                                     role="combobox"
+                                                    aria-controls={""}
+                                                    aria-expanded={true}
                                                     className="v-input v-text-field v-select v-input--hide-details v-input--is-label-active v-input--is-dirty theme--light"
                                                 >
                                                     <div className="v-input__control">

@@ -1,4 +1,4 @@
-import React , {useState} from 'react';
+import React from 'react';
 import Aside from "../Layout/Aside/aside";
 import halo from "../../public/assets/img/logo/halodex_black_logo.png"
 import { Link } from 'react-router-dom';
@@ -39,12 +39,12 @@ const  Help = props => {
                         </div>{" "}
                         <div data-v-898af2a8 className="flex pb-2">
                             1. Install the Halo{" "}
-                            <a
+                            <Link
                                 href="https://chrome.google.com/webstore/detail/halo-platform-browser-ext/oaebcmidkgapfllemhdeghglmokiakci"
                                 target="_blank"
                             >
                                 extension
-                            </a>
+                            </Link>
                         </div>{" "}
                         <div data-v-898af2a8 className="flex pb-2">
                             2. Create a feather wallet or import your existing wallet
@@ -57,27 +57,27 @@ const  Help = props => {
                         </div>{" "}
                         <div data-v-898af2a8 className="flex pb-4">
                             Detailed instructions with video clips can be found on our{" "}
-                            <a href="https://wiki.haloplatform.tech/HaloDex" target="_blank">
+                            <Link href="https://wiki.haloplatform.tech/HaloDex" target="_blank">
                                 wiki
-                            </a>
+                            </Link>
                             .
                         </div>{" "}
                         <div data-v-898af2a8 className="flex pb-4">
                             We're completely decentralized so you have to{" "}
-                            <a href="https://twitter.com/Halo_DEX" target="_blank">
+                            <Link href="https://twitter.com/Halo_DEX" target="_blank">
                                 follow us
-                            </a>{" "}
+                            </Link>{" "}
                             on Twitter for regular news, announcements and new coin listings.
                         </div>{" "}
                         <div data-v-898af2a8 className="flex pb-4">
                             Want to know more about our other products? Come check out the{" "}
-                            <a href="https://www.haloplatform.tech/" target="_blank">
+                            <Link href="https://www.haloplatform.tech/" target="_blank">
                                 Halo Platform
-                            </a>{" "}
+                            </Link>{" "}
                             and{" "}
-                            <a href="https://blockandchain.games/" target="_blank">
+                            <Link href="https://blockandchain.games/" target="_blank">
                                 Block &amp; Chain Game Studios
-                            </a>
+                            </Link>
                         </div>{" "}
                         <div data-v-898af2a8 className="flex text-xs-center">
                             {/**/}{" "}

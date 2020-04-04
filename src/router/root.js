@@ -1,4 +1,4 @@
-import {  Router, Route, Switch,Redirect } from 'react-router-dom'
+import {  Router, Route, Switch } from 'react-router-dom'
 import React from 'react';
 import history from "../store/history";
 import { connect } from "react-redux";
@@ -9,8 +9,8 @@ import Trade from "../components/Trade/trade";
 
 const Root = props => {
     return (
-        <Layout>
         <Router history={history}>
+        <Layout>
             <div>
                 <Switch>
                     <Route exact path="/" render={() => (
@@ -24,8 +24,9 @@ const Root = props => {
                     )}/>
                 </Switch>
             </div>
-        </Router>
+
         </Layout>
+        </Router>
     )
 }
 const mapStateToProps = (state) => {

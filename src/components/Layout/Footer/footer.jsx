@@ -1,4 +1,5 @@
-import React , {useState} from 'react';
+import React from 'react';
+import { Link } from 'react-router-dom';
 const  Footer = props => {
     return (
         <footer
@@ -7,29 +8,29 @@ const  Footer = props => {
         >
             <div  className="layout">
                 <div  className="flex">
-                    <a  href="/legal" className="mx-2 link">
+                    <Link to="/legal" className="mx-2 link">
                         Legal
-                    </a>
+                    </Link>
                 </div>{" "}
                 <div  className="flex">
-                    <a
-                        href="https://docs.google.com/forms/d/1Ne9wlmPo0e6objg4HKhTmkymtOMnWUSXMXGZbcuKJKc/edit?usp=sharing"
+                    <Link
+                        to="https://docs.google.com/forms/d/1Ne9wlmPo0e6objg4HKhTmkymtOMnWUSXMXGZbcuKJKc/edit?usp=sharing"
                         target="_blank"
                         rel="noopener"
                         className="mx-2 link"
                     >
                         Listing Request
-                    </a>
+                    </Link>
                 </div>{" "}
                 <div  className="flex">
-                    <a
-                        href="https://twitter.com/Halo_DEX?utm_source=platform"
+                    <Link
+                        to="https://twitter.com/Halo_DEX?utm_source=platform"
                         target="_blank"
                         rel="noopener"
                         className="mx-2 link"
                     >
                         Twitter
-                    </a>
+                    </Link>
                 </div>{" "}
                 <div  className="spacer" />{" "}
                 <div  className="flex text-xs-right mr-2">

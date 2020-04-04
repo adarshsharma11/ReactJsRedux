@@ -1,7 +1,7 @@
-import React , {useState} from 'react';
+import React from 'react';
 import logo from '../../../public/assets/img/logo/halodex_white_logo.png';
-import { MdHttps } from 'react-icons/md';
-import { MdWifi } from 'react-icons/md';
+import { MdHttps,MdWifi } from 'react-icons/md';
+import { Link } from 'react-router-dom';
 const  Header = props => {
     return (
         <nav
@@ -16,28 +16,28 @@ const  Header = props => {
             }}
         >
             <div className="v-toolbar__content" style={{ height: 64 }}>
-                <a fref="/" className="mr-4 router-link-exact-active router-link-active">
+                <Link to="/" className="mr-4 router-link-exact-active router-link-active">
                     <img
                         src={logo}
                         alt="HALO Platform"
                         height="48px"
                         className="d-block mx-auto shrink"
                     />
-                </a>{" "}
+                </Link>{" "}
                 <div
                     className="mx-auto v-card v-card--flat theme--dark transparent"
                     style={{ maxWidth: 800, width: "100%" }}
                 />{" "}
                 <div className="spacer" />{" "}
                 <div className="v-toolbar__items">
-                    <a
-                        href="/trade/FCT/ETH"
+                    <Link
+                        href="/trade"
                         className="v-btn v-btn--flat v-btn--router theme--dark"
                     >
                         <div className="v-btn__content">
                             <span>Exchange</span>
                         </div>
-                    </a>{" "}
+                    </Link>{" "}
                     {/**/} {/**/}{" "}
                     <div className="v-menu v-menu--inline">
                         <div className="v-menu__activator">

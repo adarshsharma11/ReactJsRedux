@@ -40,6 +40,7 @@ const Home = props => {
                         <img
                             src={halo}
                             contain
+                            alt={"Halo Logo"}
                             height={100}
                             className="mb-3"
                         />{" "}

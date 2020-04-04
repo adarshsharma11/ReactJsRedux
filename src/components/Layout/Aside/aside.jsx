@@ -1,4 +1,5 @@
-import React , {useState} from 'react';
+import React from 'react';
+import { Link } from 'react-router-dom';
 import {MdSearch,MdKeyboardArrowLeft,MdKeyboardArrowDown} from "react-icons/md"
 const  Aside = props => {
     return (
@@ -59,8 +60,8 @@ const  Aside = props => {
                       </div>{" "}
                       <div className="scroll-y v-data-iterator theme--light">
                           <div className="v-data-iterator--volume">
-                              <a
-                                  href="/trade/DBET/ETH"
+                              <Link
+                                  to="/trade"
                                   className="px-3 py-1 hide-overflow v-card v-card--flat v-card--tile theme--light"
                               >
                                   <div className="layout">
@@ -75,9 +76,9 @@ const  Aside = props => {
                                           <div className="grey--text ellipsis">0.00000300</div>
                                       </div>
                                   </div>
-                              </a>
-                              <a
-                                  href="/trade/EVED/ETH"
+                              </Link>
+                              <Link
+                                  to="/trade"
                                   className="px-3 py-1 hide-overflow v-card v-card--flat v-card--tile theme--light"
                               >
                                   <div className="layout">
@@ -92,9 +93,9 @@ const  Aside = props => {
                                           <div className="grey--text ellipsis">0.00002769</div>
                                       </div>
                                   </div>
-                              </a>
-                              <a
-                                  href="/trade/FCT/ETH"
+                              </Link>
+                              <Link
+                                  to="/trade"
                                   className="px-3 py-1 hide-overflow v-card v-card--flat v-card--tile theme--light"
                               >
                                   <div className="layout">
@@ -109,9 +110,9 @@ const  Aside = props => {
                                           <div className="grey--text ellipsis">0.01570000</div>
                                       </div>
                                   </div>
-                              </a>
-                              <a
-                                  href="/trade/HALO/ETH"
+                              </Link>
+                              <Link
+                                  to="/trade"
                                   className="px-3 py-1 hide-overflow v-card v-card--flat v-card--tile theme--light"
                               >
                                   <div className="layout">
@@ -126,9 +127,9 @@ const  Aside = props => {
                                           <div className="grey --text ellipsis">0.00000079</div>
                                       </div>
                                   </div>
-                              </a>
-                              <a
-                                  href="/trade/HXRO/ETH"
+                              </Link>
+                              <Link
+                                  href="/trade"
                                   className="px-3 py-1 hide-overflow v-card v-card--flat v-card--tile theme--light"
                               >
                                   <div className="layout">
@@ -143,9 +144,9 @@ const  Aside = props => {
                                           <div className="grey--text ellipsis">0.00050000</div>
                                       </div>
                                   </div>
-                              </a>
-                              <a
-                                  href="/trade/PEG/ETH"
+                              </Link>
+                              <Link
+                                  to="/trade"
                                   className="px-3 py-1 hide-overflow v-card v-card--flat v-card--tile theme--light"
                               >
                                   <div className="layout">
@@ -160,9 +161,9 @@ const  Aside = props => {
                                           <div className="grey--text ellipsis">0.00001020</div>
                                       </div>
                                   </div>
-                              </a>
-                              <a
-                                  href="/trade/VET/ETH"
+                              </Link>
+                              <Link
+                                  to="/trade"
                                   className="px-3 py-1 hide-overflow v-card v-card--flat v-card--tile theme--light"
                               >
                                   <div className="layout">
@@ -177,9 +178,9 @@ const  Aside = props => {
                                           <div className="grey--text ellipsis">0.00002300</div>
                                       </div>
                                   </div>
-                              </a>
-                              <a
-                                  href="/trade/VTHO/ETH"
+                              </Link>
+                              <Link
+                                  to="/trade"
                                   className="px-3 py-1 hide-overflow v-card v-card--flat v-card--tile theme--light"
                               >
                                   <div className="layout">
@@ -194,7 +195,7 @@ const  Aside = props => {
                                           <div className="grey--text ellipsis">0.00001900</div>
                                       </div>
                                   </div>
-                              </a>
+                              </Link>
                           </div>
                       </div>{" "}
                       <button
