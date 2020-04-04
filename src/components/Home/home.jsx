@@ -193,7 +193,7 @@ const Home = props => {
                                                         <tr key={key}>
                                                             <td className="px-2">
                                                                 <Link
-                                                                    href="/trade"
+                                                                    to="/trade"
                                                                     className="mx-0 px-0 v-btn v-btn--flat v-btn--router theme--light primary--text"
                                                                 >
                                                                     <div className="v-btn__content">
