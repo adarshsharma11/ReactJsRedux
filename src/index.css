@@ -15,6 +15,9 @@ body,html{overflow-y:auto}.swing-transition{transition:.2s cubic-bezier(.25,.8,.
     background-color: #757483 !important;
     border-color: #757483 !important;
 }
+.v-menu--inline {
+    display: block !important;
+}
 .v-footer--absolute {
     bottom: 0;
     left :0;

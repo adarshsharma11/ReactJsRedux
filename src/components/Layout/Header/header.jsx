@@ -31,7 +31,7 @@ const  Header = props => {
                 <div className="spacer" />{" "}
                 <div className="v-toolbar__items">
                     <Link
-                        href="/trade"
+                        to="/trade"
                         className="v-btn v-btn--flat v-btn--router theme--dark"
                     >
                         <div className="v-btn__content">

@@ -1,17 +1,26 @@
-import React from 'react';
+import React,{useState} from 'react';
 import Aside from "../Layout/Aside/aside";
 import { Link } from 'react-router-dom';
+import {MdKeyboardArrowLeft,MdKeyboardArrowDown,MdKeyboardArrowRight} from "react-icons/md"
 import TradingViewWidget, { Themes } from 'react-tradingview-widget';
 
 
+
 const  Trade = props => {
+
+const [activeTab,setActiveTab] = useState(0)
+
+    const handleTab = (index) => {
+        setActiveTab(index)
+    }
     return (
+        <div>
+            <Aside/>
         <main
             className="v-content"
             data-booted="true"
-            style={{padding: "64px 0px 32px"}}
+            style={{padding: "64px 0px 32px 225px"}}
         >
-            <Aside/>
             <div className="v-content__wrap">
                 <div className="container fluid grid-list-md pa-2">
                     <div className="layout wrap">
@@ -27,13 +36,16 @@ const  Trade = props => {
                                     <div data-v-15c92755 id="trade-view">
                                         <TradingViewWidget
                                             symbol="NASDAQ:AAPL"
+                                            id="tradingview_1b14a"
+                                            name="tradingview_1b14a"
                                             theme={Themes.LIGHT}
                                             locale="en"
                                             autosize
                                             allowTransparency="true"
                                             scrolling="no"
                                             allowFullScreen
-                                            style={{ display: "block", width: "100%", height: "100%" }}
+                                            hide_side_toolbar={false}
+                                           // style={{ display: "block", width: "100%", height: "100%" }}
                                         />
                                      {/*   <iframe
                                             id="tradingview_1b14a"
@@ -63,16 +75,18 @@ const  Trade = props => {
                                         <button
                                             type="button"
                                             value="allTrades"
-                                            className="text-capitalize mr-2 v-btn accent v-btn--active white--text v-btn--flat theme--light"
+                                            className={activeTab === 0 ? "text-capitalize mr-2 v-btn accent v-btn--active white--text v-btn--flat theme--light" : "text-capitalize mr-2 v-btn v-btn--flat theme--light"}
                                             style={{ minWidth: 104 }}
+                                            onClick={ () => handleTab(0)}
                                         >
                                             <div className="v-btn__content">All Trades</div>
                                         </button>
                                         <button
                                             type="button"
                                             value="myTrades"
-                                            className="text-capitalize mr-2 v-btn v-btn--flat theme--light"
+                                            className={activeTab === 1 ? "text-capitalize mr-2 v-btn accent v-btn--active white--text v-btn--flat theme--light" : "text-capitalize mr-2 v-btn v-btn--flat theme--light"}
                                             style={{ minWidth: 104 }}
+                                            onClick={ () => handleTab(1)}
                                         >
                                             <div className="v-btn__content">My Trades</div>
                                         </button>
@@ -121,7 +135,13 @@ const  Trade = props => {
                                                     <th colSpan={3} className="column" />
                                                 </tr>
                                                 </thead>
+                                                {activeTab === 0 && (
                                                 <tbody>
+
+
+
+
+
                                                 <tr data-v-64a9250c className="trade-sell text-xs-right">
                                                     <td data-v-64a9250c>0.00000058</td>{" "}
                                                     <td data-v-64a9250c>177.00000000</td>{" "}
@@ -346,7 +366,17 @@ const  Trade = props => {
                                                         Mar 24 2020
                                                     </td>
                                                 </tr>
+
+                                                </tbody> )}
+                                                {activeTab === 1 && (
+                                                <tbody className="__web-inspector-hide-shortcut__">
+                                                <tr>
+                                                    <td colSpan="3" className="text-xs-center">Please login to view your
+                                                        trades
+                                                    </td>
+                                                </tr>
                                                 </tbody>
+                                                )}
                                             </table>
                                         </div>
                                     </div>
@@ -944,8 +974,7 @@ const  Trade = props => {
                                                                 </div>
                                                                 <div className="v-input__append-inner">
                                                                     <div className="v-input__icon v-input__icon--append">
-                                                                        <i
-                                                                            aria-hidden="true"
+                                                                        <MdKeyboardArrowDown
                                                                             className="v-icon mdi mdi-menu-down theme--light"
                                                                         />
                                                                     </div>
@@ -965,8 +994,7 @@ const  Trade = props => {
                                                     aria-label="Previous page"
                                                 >
                                                     <div className="v-btn__content">
-                                                        <i
-                                                            aria-hidden="true"
+                                                        <MdKeyboardArrowLeft
                                                             className="v-icon mdi mdi-chevron-left theme--light"
                                                         />
                                                     </div>
@@ -978,8 +1006,7 @@ const  Trade = props => {
                                                     aria-label="Next page"
                                                 >
                                                     <div className="v-btn__content">
-                                                        <i
-                                                            aria-hidden="true"
+                                                        <MdKeyboardArrowRight
                                                             className="v-icon mdi mdi-chevron-right theme--light"
                                                         />
                                                     </div>
@@ -995,6 +1022,7 @@ const  Trade = props => {
                 </div>
             </div>
         </main>
+        </div>
     );
 }
 export default Trade;
