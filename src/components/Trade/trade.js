@@ -4,22 +4,26 @@ import { Link } from 'react-router-dom';
 import {MdKeyboardArrowLeft,MdKeyboardArrowDown,MdKeyboardArrowRight} from "react-icons/md"
 import TradingViewWidget, { Themes } from 'react-tradingview-widget';
 
-
-
 const  Trade = props => {
 
 const [activeTab,setActiveTab] = useState(0)
+    const [width, setWidth] = useState( 225 )
 
     const handleTab = (index) => {
         setActiveTab(index)
     }
+    const handleOnClick = () => {
+        let newWidth = width === 225 ? 105 : 225
+        setWidth(newWidth)
+    }
+
     return (
         <div>
-            <Aside/>
+            <Aside onClick={handleOnClick} width={width}/>
         <main
             className="v-content"
             data-booted="true"
-            style={{padding: "64px 0px 32px 225px"}}
+            style={{padding: width === 225 ? "64px 0px 32px 225px" : "64px 0px 32px 105px"}}
         >
             <div className="v-content__wrap">
                 <div className="container fluid grid-list-md pa-2">
@@ -47,16 +51,6 @@ const [activeTab,setActiveTab] = useState(0)
                                             hide_side_toolbar={false}
                                            // style={{ display: "block", width: "100%", height: "100%" }}
                                         />
-                                     {/*   <iframe
-                                            id="tradingview_1b14a"
-                                            name="tradingview_1b14a"
-                                            src={"../../public/library/charting_library/static/en-tv-chart.1c7535a2aac5ec511ed5.html#symbol=HALO%2FETH&interval=15&widgetbar=%7B%22details%22%3Afalse%2C%22watchlist%22%3Afalse%2C%22watchlist_settings%22%3A%7B%22default_symbols%22%3A%5B%5D%7D%7D&timeFrames=%5B%7B%22text%22%3A%225y%22%2C%22resolution%22%3A%22W%22%7D%2C%7B%22text%22%3A%221y%22%2C%22resolution%22%3A%22W%22%7D%2C%7B%22text%22%3A%226m%22%2C%22resolution%22%3A%22120%22%7D%2C%7B%22text%22%3A%223m%22%2C%22resolution%22%3A%2260%22%7D%2C%7B%22text%22%3A%221m%22%2C%22resolution%22%3A%2230%22%7D%2C%7B%22text%22%3A%225d%22%2C%22resolution%22%3A%225%22%7D%2C%7B%22text%22%3A%221d%22%2C%22resolution%22%3A%221%22%7D%5D&locale=en&uid=tradingview_1b14a&clientId=www.halodex.io&userId=0&chartsStorageVer=1.0&debug=false&timezone=America%2FNew_York&theme=Light"}
-                                            frameBorder={0}
-                                            allowTransparency="true"
-                                            scrolling="no"
-                                            allowFullScreen
-                                            style={{ display: "block", width: "100%", height: "100%" }}
-                                        />*/}
                                     </div>
                                 </div>
                             </div>
@@ -137,11 +131,6 @@ const [activeTab,setActiveTab] = useState(0)
                                                 </thead>
                                                 {activeTab === 0 && (
                                                 <tbody>
-
-
-
-
-
                                                 <tr data-v-64a9250c className="trade-sell text-xs-right">
                                                     <td data-v-64a9250c>0.00000058</td>{" "}
                                                     <td data-v-64a9250c>177.00000000</td>{" "}

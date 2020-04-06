@@ -6,6 +6,7 @@ import Home from "../components/Home/home";
 import Layout from "../components/Layout/layout";
 import Help from "../components/Help/help";
 import Trade from "../components/Trade/trade";
+import Legal from "../components/Legal/legal";
 
 const Root = props => {
     return (
@@ -22,9 +23,11 @@ const Root = props => {
                     <Route exact path="/trade" render={() => (
                         <Trade/>
                     )}/>
+                    <Route exact path="/legal" render={() => (
+                        <Legal/>
+                    )}/>
                 </Switch>
             </div>
-
         </Layout>
         </Router>
     )

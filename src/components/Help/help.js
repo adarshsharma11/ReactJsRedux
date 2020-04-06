@@ -1,16 +1,22 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Aside from "../Layout/Aside/aside";
 import halo from "../../public/assets/img/logo/halodex_black_logo.png"
 import { Link } from 'react-router-dom';
 
 const  Help = props => {
+    const [width, setWidth] = useState( 225 )
+    const handleOnClick = () => {
+        let newWidth = width === 225 ? 105 : 225
+        setWidth(newWidth)
+    }
     return (
+       <div>
+            <Aside width={width} onClick={handleOnClick}/>
         <main
-            className="v-content"
-            data-booted="true"
-            style={{padding: "64px 0px 32px"}}
-        >
-            <Aside/>
+       className="v-content"
+       data-booted="true"
+       style={{padding: width === 225 ? "64px 0px 32px 225px" : "64px 0px 32px 105px"}}
+       >
             <div className="v-content__wrap">
                 <div
                     data-v-898af2a8
@@ -95,6 +101,7 @@ const  Help = props => {
                 </div>
             </div>;
         </main>
+       </div>
     );
 }
 export default Help;
