@@ -46,7 +46,7 @@ const  Help = props => {
                         <div data-v-898af2a8 className="flex pb-2">
                             1. Install the Halo{" "}
                             <Link
-                                href="https://chrome.google.com/webstore/detail/halo-platform-browser-ext/oaebcmidkgapfllemhdeghglmokiakci"
+                                to="https://chrome.google.com/webstore/detail/halo-platform-browser-ext/oaebcmidkgapfllemhdeghglmokiakci"
                                 target="_blank"
                             >
                                 extension
@@ -63,25 +63,25 @@ const  Help = props => {
                         </div>{" "}
                         <div data-v-898af2a8 className="flex pb-4">
                             Detailed instructions with video clips can be found on our{" "}
-                            <Link href="https://wiki.haloplatform.tech/HaloDex" target="_blank">
+                            <Link to="https://wiki.haloplatform.tech/HaloDex" target="_blank">
                                 wiki
                             </Link>
                             .
                         </div>{" "}
                         <div data-v-898af2a8 className="flex pb-4">
                             We're completely decentralized so you have to{" "}
-                            <Link href="https://twitter.com/Halo_DEX" target="_blank">
+                            <Link to="https://twitter.com/Halo_DEX" target="_blank">
                                 follow us
                             </Link>{" "}
                             on Twitter for regular news, announcements and new coin listings.
                         </div>{" "}
                         <div data-v-898af2a8 className="flex pb-4">
                             Want to know more about our other products? Come check out the{" "}
-                            <Link href="https://www.haloplatform.tech/" target="_blank">
+                            <Link to="https://www.haloplatform.tech/" target="_blank">
                                 Halo Platform
                             </Link>{" "}
                             and{" "}
-                            <Link href="https://blockandchain.games/" target="_blank">
+                            <Link to="https://blockandchain.games/" target="_blank">
                                 Block &amp; Chain Game Studios
                             </Link>
                         </div>{" "}

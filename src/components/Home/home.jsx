@@ -13,9 +13,12 @@ const Home = props => {
     async function getPrices() {
         let response = await fetch(DEX_API_URL + 'public/pricing/all')
         let result = await response.json();
-        //console.log(result, 'response');
-        setData(result)
+        console.log(result, 'response');
+        const selectedTokens = ['UDOO','FLASH', 'HST', 'PEG']
+        const balances = result.filter(ticker => !selectedTokens.includes(ticker.quoteTicker))
+        setData(balances)
     }
+    const  financial = (x) => Number.parseFloat(x).toFixed(8);
 
     useEffect(() => {
         getPrices();
@@ -206,7 +209,7 @@ const Home = props => {
                                                             {" "}
                                                             <td>Halo</td>
                                                             {" "}
-                                                            <td className="text-xs-right">0.00000067</td>
+                                                            <td className="text-xs-right">{financial(item.last)}</td>
                                                             {" "}
                                                             <td className="text-xs-right">
                                                                 <span className="font-weight-black">$0.000089</span>
@@ -221,7 +224,7 @@ const Home = props => {
                                                             <td className="text-xs-right">0.00000067</td>
                                                             {" "}
                                                             <td className="text-xs-right">
-                                                                <span>0.26800000</span> <strong>ETH</strong>
+                                                                <span>{item.twoFourVolume}</span> <strong>ETH</strong>
                                                             </td>
                                                         </tr>
                                                     );
