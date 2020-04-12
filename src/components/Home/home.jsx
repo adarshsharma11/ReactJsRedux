@@ -1,27 +1,37 @@
 import React, {useState, useEffect} from 'react';
 import halo from "../../public/assets/img/logo/halo.png"
 import {MdOpenInNew, MdArrowUpward} from "react-icons/md"
-import {DEX_API_URL} from "../../helpers/constants/constants"
+import {DEX_API_URL_TEST,CRYPTO_API_URL} from "../../helpers/constants/constants"
 import { Link } from 'react-router-dom';
 
 const Home = props => {
 
     const [data, setData] = useState(false)
+    const [price, setPrice] = useState(0)
 
 
     // get prices list
     async function getPrices() {
-        let response = await fetch(DEX_API_URL + 'public/pricing/all')
+        let response = await fetch(DEX_API_URL_TEST + 'public/pricing/all?start=1549022400000&end=1549022400000&limit=10&resolution=24h')
         let result = await response.json();
-        console.log(result, 'response');
+        console.log(result,'ress')
         const selectedTokens = ['UDOO','FLASH', 'HST', 'PEG']
         const balances = result.filter(ticker => !selectedTokens.includes(ticker.quoteTicker))
         setData(balances)
     }
+//get crypto price in usd/ETH
+    async function getCryptoPrices() {
+        let response = await fetch(CRYPTO_API_URL)
+        let result = await response.json();
+        setPrice(result.USD)
+        getPrices();
+    }
     const  financial = (x) => Number.parseFloat(x).toFixed(8);
+    const  financialUsd = (x) => Number.parseFloat(x).toFixed(6);
+    const  percentage = (x) => Number.parseFloat(x).toFixed(2);
 
     useEffect(() => {
-        getPrices();
+        getCryptoPrices();
     }, []);
     return (
 
@@ -43,7 +53,7 @@ const Home = props => {
                     >
                         <img
                             src={halo}
-                            contain
+                            contain={"true"}
                             alt={"Halo Logo"}
                             height={100}
                             className="mb-3"
@@ -74,7 +84,7 @@ const Home = props => {
                                     <div>
                                         <div
                                             className="v-item-group elevation-0 pa-1 theme--light v-btn-toggle v-btn-toggle--only-child v-btn-toggle--selected"
-                                            full-width
+                                            full-width={"true"}
                                         >
                                             <button
                                                 type="button"
@@ -207,24 +217,24 @@ const Home = props => {
                                                                 </Link>
                                                             </td>
                                                             {" "}
-                                                            <td>Halo</td>
+                                                            <td>{item.name}</td>
                                                             {" "}
                                                             <td className="text-xs-right">{financial(item.last)}</td>
                                                             {" "}
                                                             <td className="text-xs-right">
-                                                                <span className="font-weight-black">$0.000089</span>
+                                                                <span className="font-weight-black">${financialUsd(price*item.last)}</span>
                                                             </td>
                                                             {" "}
                                                             <td className="text-xs-right">
-                                                                <span className="red--text">-1.47%</span>
+                                                                <span className={percentage(item.percentChange) < 0? "red--text" : percentage(item.percentChange )=== 0 ? "grey--text" : percentage(item.percentChange )> 0  ? "green--text":"green--text"}>{percentage(item.percentChange)}%</span>
                                                             </td>
                                                             {" "}
-                                                            <td className="text-xs-right">0.00000068</td>
+                                                            <td className="text-xs-right">{financial(item.high)}</td>
                                                             {" "}
-                                                            <td className="text-xs-right">0.00000067</td>
+                                                            <td className="text-xs-right">{financial(item.low)}</td>
                                                             {" "}
                                                             <td className="text-xs-right">
-                                                                <span>{item.twoFourVolume}</span> <strong>ETH</strong>
+                                                                <span>{financial(item.baseVolume)}</span> <strong>ETH</strong>
                                                             </td>
                                                         </tr>
                                                     );

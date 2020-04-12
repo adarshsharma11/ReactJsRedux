@@ -24,7 +24,7 @@ const  Footer = props => {
                             href="https://docs.google.com/forms/d/1Ne9wlmPo0e6objg4HKhTmkymtOMnWUSXMXGZbcuKJKc/edit?usp=sharing"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className
+                            className={"mx-2 link"}
                         >
                             Listing Request
                         </a>
@@ -35,7 +35,7 @@ const  Footer = props => {
                             href="https://twitter.com/Halo_DEX?utm_source=platform"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className
+                            className={"mx-2 link"}
                         >
                             Twitter
                         </a>
