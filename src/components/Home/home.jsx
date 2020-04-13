@@ -1,37 +1,71 @@
 import React, {useState, useEffect} from 'react';
 import halo from "../../public/assets/img/logo/halo.png"
-import {MdOpenInNew, MdArrowUpward} from "react-icons/md"
-import {DEX_API_URL_TEST,CRYPTO_API_URL} from "../../helpers/constants/constants"
-import { Link } from 'react-router-dom';
+import {MdOpenInNew, MdArrowUpward,MdArrowDownward} from "react-icons/md"
+import {DEX_API_URL_TEST, CRYPTO_API_URL} from "../../helpers/constants/constants"
+import {Link} from 'react-router-dom';
 
 const Home = props => {
 
-    const [data, setData] = useState(false)
+    const [data, setData] = useState([])
     const [price, setPrice] = useState(0)
+    const [sortBy, setSortBy] = useState("ASC");
 
 
     // get prices list
     async function getPrices() {
         let response = await fetch(DEX_API_URL_TEST + 'public/pricing/all?start=1549022400000&end=1549022400000&limit=10&resolution=24h')
         let result = await response.json();
-        console.log(result,'ress')
-        const selectedTokens = ['UDOO','FLASH', 'HST', 'PEG']
+        //console.log(result, 'ress')
+        const selectedTokens = ['UDOO', 'FLASH', 'HST', 'PEG']
         const balances = result.filter(ticker => !selectedTokens.includes(ticker.quoteTicker))
         setData(balances)
     }
+
 //get crypto price in usd/ETH
     async function getCryptoPrices() {
         let response = await fetch(CRYPTO_API_URL)
         let result = await response.json();
         setPrice(result.USD)
-        getPrices();
+
     }
-    const  financial = (x) => Number.parseFloat(x).toFixed(8);
-    const  financialUsd = (x) => Number.parseFloat(x).toFixed(6);
-    const  percentage = (x) => Number.parseFloat(x).toFixed(2);
+
+    const financial = (x) => Number.parseFloat(x).toFixed(8);
+    const financialUsd = (x) => Number.parseFloat(x).toFixed(6);
+    const percentage = (x) => Number.parseFloat(x).toFixed(2);
+
+    //sort
+    const sort = (key) => {
+        let newData = [];
+        let updateSort = sortBy === "ASC" ? "DESC" : "ASC";
+        if(key === "last") {
+             newData = sortBy === "ASC" ? [...data].sort((a, b) => parseFloat(a.last) - parseFloat(b.last)) : [...data].sort((a, b) => parseFloat(b.last) - parseFloat(a.last));
+        }
+        else if(key === "usd"){
+            newData = sortBy === "ASC" ? [...data].sort((a, b) =>  parseFloat(financialUsd(price * a.last)) - parseFloat(financialUsd(price * b.last))) : [...data].sort((a, b) => parseFloat(financialUsd(price * b.last)) - parseFloat(financialUsd(price * a.last)));
+        }
+        else  if (key === "percent"){
+            newData = sortBy === "ASC" ? [...data].sort((a, b) => parseFloat(a.percentChange) - parseFloat(b.percentChange)) : [...data].sort((a, b) => parseFloat(b.percentChange) - parseFloat(a.percentChange));
+        }
+        else  if (key === "24hourHigh"){
+            newData = sortBy === "ASC" ? [...data].sort((a, b) => parseFloat(a.high) - parseFloat(b.high)) : [...data].sort((a, b) => parseFloat(b.high) - parseFloat(a.high));
+
+        }
+        else  if (key === "24hourLow"){
+            newData = sortBy === "ASC" ? [...data].sort((a, b) => parseFloat(a.low) - parseFloat(b.low)) : [...data].sort((a, b) => parseFloat(b.low) - parseFloat(a.low));
+        }
+        else  if (key === "24hourVolume"){
+            newData = sortBy === "ASC" ? [...data].sort((a, b) => parseFloat(a.baseVolume) - parseFloat(b.baseVolume)) : [...data].sort((a, b) => parseFloat(b.baseVolume) - parseFloat(a.baseVolume));
+        }
+        else {
+           newData = sortBy === "ASC" ? [...data].sort((a, b) => parseFloat(a.last) - parseFloat(b.last)) : [...data].sort((a, b) => parseFloat(b.last) - parseFloat(a.last));
+        }
+        setData(newData);
+        setSortBy(updateSort);
+    }
 
     useEffect(() => {
         getCryptoPrices();
+        getPrices();
     }, []);
     return (
 
@@ -131,8 +165,15 @@ const Home = props => {
                                                         tabIndex={0}
                                                         className="column sortable text-xs-right"
                                                     >
-                                                        <MdArrowUpward size={"16"} className="v-icon"
+                                                        { sortBy === "ASC" && (
+                                                        < MdArrowUpward size={"16"} className="v-icon" onClick={() => sort("last")}
                                                         />
+                                                    )}
+                                                        { sortBy === "DESC" && (
+                                                            < MdArrowDownward size={"16"} className="v-icon" onClick={() => sort("last")}
+                                                            />
+                                                        )}
+
                                                         Last Price
                                                     </th>
                                                     <th
@@ -143,8 +184,14 @@ const Home = props => {
                                                         tabIndex={0}
                                                         className="column sortable text-xs-right"
                                                     >
-                                                        <MdArrowUpward size={"16"} className="v-icon"
+                                                        { sortBy === "ASC" && (
+                                                        <MdArrowUpward size={"16"} className="v-icon" onClick={() => sort("usd")}
                                                         />
+                                                    )}
+                                                        { sortBy === "DESC" && (
+                                                            <MdArrowDownward size={"16"} className="v-icon" onClick={() => sort("usd")}
+                                                            />
+                                                        )}
                                                         USD
                                                     </th>
                                                     <th
@@ -155,8 +202,14 @@ const Home = props => {
                                                         tabIndex={0}
                                                         className="column sortable text-xs-right"
                                                     >
-                                                        <MdArrowUpward size={"16"} className="v-icon"
+                                                        { sortBy === "ASC" && (
+                                                        <MdArrowUpward size={"16"} className="v-icon" onClick={() => sort("percent")}
                                                         />
+                                                        )}
+                                                        { sortBy === "DESC" && (
+                                                            <MdArrowDownward size={"16"} className="v-icon" onClick={() => sort("percent")}
+                                                            />
+                                                        )}
                                                         24h Change
                                                     </th>
                                                     <th
@@ -167,8 +220,14 @@ const Home = props => {
                                                         tabIndex={0}
                                                         className="column sortable text-xs-right"
                                                     >
-                                                        <MdArrowUpward size={"16"} className="v-icon"
+                                                        { sortBy === "ASC" && (
+                                                        <MdArrowUpward size={"16"} className="v-icon" onClick={() => sort("24hourHigh")}
                                                         />
+                                                        )}
+                                                        { sortBy === "DESC" && (
+                                                            <MdArrowDownward size={"16"} className="v-icon" onClick={() => sort("24hourHigh")}
+                                                            />
+                                                        )}
                                                         24h High
                                                     </th>
                                                     <th
@@ -179,8 +238,14 @@ const Home = props => {
                                                         tabIndex={0}
                                                         className="column sortable text-xs-right"
                                                     >
-                                                        <MdArrowUpward size={"16"} className="v-icon"
-                                                        />
+                                                        { sortBy === "ASC" && (
+                                                            <MdArrowUpward size={"16"} className="v-icon" onClick={() => sort("24hourLow")}
+                                                            />
+                                                        )}
+                                                        { sortBy === "DESC" && (
+                                                            <MdArrowDownward size={"16"} className="v-icon" onClick={() => sort("24hourLow")}
+                                                            />
+                                                        )}
                                                         24h Low
                                                     </th>
                                                     <th
@@ -191,8 +256,14 @@ const Home = props => {
                                                         tabIndex={0}
                                                         className="column sortable active desc text-xs-right"
                                                     >
-                                                        <MdArrowUpward size={"16"} className="v-icon"
-                                                        />
+                                                        { sortBy === "ASC" && (
+                                                            <MdArrowUpward size={"16"} className="v-icon" onClick={() => sort("24hourVolume")}
+                                                            />
+                                                        )}
+                                                        { sortBy === "DESC" && (
+                                                            <MdArrowDownward size={"16"} className="v-icon" onClick={() => sort("24hourVolume")}
+                                                            />
+                                                        )}
                                                         24h Volume
                                                     </th>
                                                 </tr>
@@ -216,25 +287,21 @@ const Home = props => {
                                                                     </div>
                                                                 </Link>
                                                             </td>
-                                                            {" "}
                                                             <td>{item.name}</td>
-                                                            {" "}
                                                             <td className="text-xs-right">{financial(item.last)}</td>
-                                                            {" "}
                                                             <td className="text-xs-right">
-                                                                <span className="font-weight-black">${financialUsd(price*item.last)}</span>
+                                                                <span
+                                                                    className="font-weight-black">${financialUsd(price * item.last)}</span>
                                                             </td>
-                                                            {" "}
                                                             <td className="text-xs-right">
-                                                                <span className={percentage(item.percentChange) < 0? "red--text" : percentage(item.percentChange )=== 0 ? "grey--text" : percentage(item.percentChange )> 0  ? "green--text":"green--text"}>{percentage(item.percentChange)}%</span>
+                                                                <span
+                                                                    className={percentage(item.percentChange) < 0 ? "red--text" : percentage(item.percentChange) === 0 ? "grey--text" : percentage(item.percentChange) > 0 ? "green--text" : "green--text"}>{percentage(item.percentChange)}%</span>
                                                             </td>
-                                                            {" "}
                                                             <td className="text-xs-right">{financial(item.high)}</td>
-                                                            {" "}
                                                             <td className="text-xs-right">{financial(item.low)}</td>
-                                                            {" "}
                                                             <td className="text-xs-right">
-                                                                <span>{financial(item.baseVolume)}</span> <strong>ETH</strong>
+                                                                <span>{financial(item.baseVolume)}</span>
+                                                                <strong>ETH</strong>
                                                             </td>
                                                         </tr>
                                                     );
