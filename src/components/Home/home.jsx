@@ -48,7 +48,6 @@ const Home = props => {
         }
         else  if (key === "24hourHigh"){
             newData = sortBy === "ASC" ? [...data].sort((a, b) => parseFloat(a.high) - parseFloat(b.high)) : [...data].sort((a, b) => parseFloat(b.high) - parseFloat(a.high));
-
         }
         else  if (key === "24hourLow"){
             newData = sortBy === "ASC" ? [...data].sort((a, b) => parseFloat(a.low) - parseFloat(b.low)) : [...data].sort((a, b) => parseFloat(b.low) - parseFloat(a.low));
@@ -126,7 +125,7 @@ const Home = props => {
                                                 className="text-capitalize mr-2 v-btn accent v-btn--active white--text v-btn--flat theme--light"
                                                 style={{minWidth: 104}}
                                             >
-                                                <div className="v-btn__cont[p/ent">ETH Markets</div>
+                                                <div className="v-btn__content">ETH Markets</div>
                                                 :
                                             </button>
                                         </div>
@@ -163,14 +162,15 @@ const Home = props => {
                                                         aria-label="Last Price: Not sorted. Activate to sort ascending."
                                                         aria-sort="none"
                                                         tabIndex={0}
+                                                        onClick={() => sort("last")}
                                                         className="column sortable text-xs-right"
                                                     >
                                                         { sortBy === "ASC" && (
-                                                        < MdArrowUpward size={"16"} className="v-icon" onClick={() => sort("last")}
+                                                        < MdArrowUpward size={"16"} className="v-icon"
                                                         />
                                                     )}
                                                         { sortBy === "DESC" && (
-                                                            < MdArrowDownward size={"16"} className="v-icon" onClick={() => sort("last")}
+                                                            < MdArrowDownward size={"16"} className="v-icon"
                                                             />
                                                         )}
 
@@ -182,14 +182,15 @@ const Home = props => {
                                                         aria-label="USD: Not sorted. Activate to sort ascending."
                                                         aria-sort="none"
                                                         tabIndex={0}
+                                                        onClick={() => sort("usd")}
                                                         className="column sortable text-xs-right"
                                                     >
                                                         { sortBy === "ASC" && (
-                                                        <MdArrowUpward size={"16"} className="v-icon" onClick={() => sort("usd")}
+                                                        <MdArrowUpward size={"16"} className="v-icon"
                                                         />
                                                     )}
                                                         { sortBy === "DESC" && (
-                                                            <MdArrowDownward size={"16"} className="v-icon" onClick={() => sort("usd")}
+                                                            <MdArrowDownward size={"16"} className="v-icon"
                                                             />
                                                         )}
                                                         USD
@@ -200,14 +201,15 @@ const Home = props => {
                                                         aria-label="24h Change: Not sorted. Activate to sort ascending."
                                                         aria-sort="none"
                                                         tabIndex={0}
+                                                        onClick={() => sort("percent")}
                                                         className="column sortable text-xs-right"
                                                     >
                                                         { sortBy === "ASC" && (
-                                                        <MdArrowUpward size={"16"} className="v-icon" onClick={() => sort("percent")}
+                                                        <MdArrowUpward size={"16"} className="v-icon"
                                                         />
                                                         )}
                                                         { sortBy === "DESC" && (
-                                                            <MdArrowDownward size={"16"} className="v-icon" onClick={() => sort("percent")}
+                                                            <MdArrowDownward size={"16"} className="v-icon"
                                                             />
                                                         )}
                                                         24h Change
@@ -218,14 +220,15 @@ const Home = props => {
                                                         aria-label="24h High: Not sorted. Activate to sort ascending."
                                                         aria-sort="none"
                                                         tabIndex={0}
+                                                        onClick={() => sort("24hourHigh")}
                                                         className="column sortable text-xs-right"
                                                     >
                                                         { sortBy === "ASC" && (
-                                                        <MdArrowUpward size={"16"} className="v-icon" onClick={() => sort("24hourHigh")}
+                                                        <MdArrowUpward size={"16"} className="v-icon"
                                                         />
                                                         )}
                                                         { sortBy === "DESC" && (
-                                                            <MdArrowDownward size={"16"} className="v-icon" onClick={() => sort("24hourHigh")}
+                                                            <MdArrowDownward size={"16"} className="v-icon"
                                                             />
                                                         )}
                                                         24h High
@@ -236,14 +239,15 @@ const Home = props => {
                                                         aria-label="24h Low: Not sorted. Activate to sort ascending."
                                                         aria-sort="none"
                                                         tabIndex={0}
+                                                        onClick={() => sort("24hourLow")}
                                                         className="column sortable text-xs-right"
                                                     >
                                                         { sortBy === "ASC" && (
-                                                            <MdArrowUpward size={"16"} className="v-icon" onClick={() => sort("24hourLow")}
+                                                            <MdArrowUpward size={"16"} className="v-icon"
                                                             />
                                                         )}
                                                         { sortBy === "DESC" && (
-                                                            <MdArrowDownward size={"16"} className="v-icon" onClick={() => sort("24hourLow")}
+                                                            <MdArrowDownward size={"16"} className="v-icon"
                                                             />
                                                         )}
                                                         24h Low
@@ -254,14 +258,15 @@ const Home = props => {
                                                         aria-label="24h Volume: Sorted descending. Activate to remove sorting."
                                                         aria-sort="descending"
                                                         tabIndex={0}
-                                                        className="column sortable active desc text-xs-right"
+                                                        onClick={() => sort("24hourVolume")}
+                                                        className="column sortable  desc text-xs-right"
                                                     >
                                                         { sortBy === "ASC" && (
-                                                            <MdArrowUpward size={"16"} className="v-icon" onClick={() => sort("24hourVolume")}
+                                                            <MdArrowUpward size={"16"} className="v-icon"
                                                             />
                                                         )}
                                                         { sortBy === "DESC" && (
-                                                            <MdArrowDownward size={"16"} className="v-icon" onClick={() => sort("24hourVolume")}
+                                                            <MdArrowDownward size={"16"} className="v-icon"
                                                             />
                                                         )}
                                                         24h Volume
