@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import halo from "../../public/assets/img/logo/halo.png"
 import {MdOpenInNew, MdArrowUpward,MdArrowDownward} from "react-icons/md"
 import {DEX_API_URL_TEST, CRYPTO_API_URL} from "../../helpers/constants/constants"
+import {financial,financialUsd,percentage} from "../../helpers/constants/helpers";
 import {Link} from 'react-router-dom';
 
 const Home = props => {
@@ -26,12 +27,7 @@ const Home = props => {
         let response = await fetch(CRYPTO_API_URL)
         let result = await response.json();
         setPrice(result.USD)
-
     }
-
-    const financial = (x) => Number.parseFloat(x).toFixed(8);
-    const financialUsd = (x) => Number.parseFloat(x).toFixed(6);
-    const percentage = (x) => Number.parseFloat(x).toFixed(2);
 
     //sort
     const sort = (key) => {
