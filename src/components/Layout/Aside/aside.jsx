@@ -121,7 +121,7 @@ const Aside = props => {
                                                 {" "}
                                                 {width === 225 && (
                                                     <div className="flex text-xs-right xs6">
-                                                        <span className={percentage(item.percentChange) < 0 ? "red--text" : percentage(item.percentChange) === 0 ? "grey--text" : percentage(item.percentChange) > 0 ? "green--text" : "green--text"}>{percentage(item.percentChange)}%</span>{" "}
+                                                        <span className={percentage(item.percentChange) < 0 ? "red--text" : percentage(item.percentChange) === 0 ? "grey--text" : percentage(item.percentChange) > 0 ? "green--text" : "grey--text"}>{percentage(item.percentChange)}%</span>{" "}
                                                         <div className="grey--text ellipsis">{financial(item.low)}</div>
                                                     </div>
                                                 )}
