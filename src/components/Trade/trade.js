@@ -5,7 +5,7 @@ import { useParams} from "react-router";
 import {MdKeyboardArrowLeft,MdKeyboardArrowDown,MdKeyboardArrowRight} from "react-icons/md"
 import TradingViewWidget, { Themes } from 'react-tradingview-widget';
 import {DEX_API_URL} from "../../helpers/constants/constants";
-import {financial} from "../../helpers/constants/helpers";
+import {financial, trade} from "../../helpers/constants/helpers";
 import moment from "moment";
 
 const  Trade = props => {
@@ -170,7 +170,7 @@ const  Trade = props => {
                                                     return (
                                                         <tr data-v-64a9250c className={item.side === "buy" ? "buy-sell text-xs-right":"trade-sell text-xs-right"} key={key}>
                                                             <td data-v-64a9250c>{financial(item.price)}</td>
-                                                            <td data-v-64a9250c>{item.amountReceived}</td>
+                                                            <td data-v-64a9250c>{trade(item.amountReceived)}</td>
                                                             <td data-v-64a9250c className="text-xs-right">
                                                                 {moment(item.blockTimestamp).format('LL')}
                                                             </td>
