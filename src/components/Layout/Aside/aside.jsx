@@ -105,7 +105,7 @@ const Aside = props => {
                                 {data && data.length > 0 && data.map((item, key) => {
                                     return (
                                         <Link
-                                            href="/trade"
+                                            to={{pathname:"/trade/"+item.quoteTicker+"/"+ item.baseTicker,state:{item}}}
                                             className="px-3 py-1 hide-overflow v-card v-card--flat v-card--tile theme--light"
                                             key={key}
                                         >
@@ -154,9 +154,7 @@ const Aside = props => {
                     </div>
                 </div>
                 <div className="v-navigation-drawer__border"/>
-            </aside>
-            ;
-
+            </aside>;
         </div>
     );
 }

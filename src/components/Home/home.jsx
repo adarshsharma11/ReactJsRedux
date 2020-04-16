@@ -278,7 +278,7 @@ const Home = props => {
                                                         <tr key={key}>
                                                             <td className="px-2">
                                                                 <Link
-                                                                    to="/trade"
+                                                                    to={{pathname:"/trade/"+item.quoteTicker+"/"+ item.baseTicker,state:{item}}}
                                                                     className="mx-0 px-0 v-btn v-btn--flat v-btn--router theme--light primary--text"
                                                                 >
                                                                     <div className="v-btn__content">
@@ -296,7 +296,7 @@ const Home = props => {
                                                             </td>
                                                             <td className="text-xs-right">
                                                                 <span
-                                                                    className={percentage(item.percentChange) < 0 ? "red--text" : percentage(item.percentChange) === 0 ? "grey--text" : percentage(item.percentChange) > 0 ? "green--text" : "green--text"}>{percentage(item.percentChange)}%</span>
+                                                                    className={percentage(item.percentChange) < 0 ? "red--text" : percentage(item.percentChange) === 0 ? "grey--text" : percentage(item.percentChange) > 0 ? "green--text" : "grey--text"}>{percentage(item.percentChange)}%</span>
                                                             </td>
                                                             <td className="text-xs-right">{financial(item.high)}</td>
                                                             <td className="text-xs-right">{financial(item.low)}</td>

@@ -1,13 +1,21 @@
-import React,{useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import Aside from "../Layout/Aside/aside";
 import { Link } from 'react-router-dom';
+import { useParams} from "react-router";
 import {MdKeyboardArrowLeft,MdKeyboardArrowDown,MdKeyboardArrowRight} from "react-icons/md"
 import TradingViewWidget, { Themes } from 'react-tradingview-widget';
+import {DEX_API_URL} from "../../helpers/constants/constants";
+import {financial} from "../../helpers/constants/helpers";
+import moment from "moment";
 
 const  Trade = props => {
 
-const [activeTab,setActiveTab] = useState(0)
+    const [activeTab,setActiveTab] = useState(0)
+    const [data, setData] = useState([])
+    const [buyData, setBuyData] = useState([])
+    const [sellData, setSellData] = useState([])
     const [width, setWidth] = useState( 225 )
+    const {base,quote}= useParams();
 
     const handleTab = (index) => {
         setActiveTab(index)
@@ -16,6 +24,34 @@ const [activeTab,setActiveTab] = useState(0)
         let newWidth = width === 225 ? 105 : 225
         setWidth(newWidth)
     }
+    //get pair dex press list
+    async function getPrices() {
+        let response = await fetch(DEX_API_URL + 'market/trades/'+quote+'/'+base+'?page=1&limit=32')
+        let result = await response.json();
+        setData(result.trades)
+    }
+
+    //buy api
+    async function buyPrices() {
+        let response = await fetch(DEX_API_URL + 'market/orderbook/'+quote+'/'+base+'?type=buy&page=1&limit=1000')
+        let result = await response.json();
+        setBuyData(result.orders)
+    }
+
+//sell api list
+    async function sellPrices() {
+        let response = await fetch(DEX_API_URL + 'market/orderbook/'+quote+'/'+base+'?type=sell&page=1&limit=32')
+        let result = await response.json();
+        setSellData(result.orders)
+    }
+
+
+
+    useEffect(() => {
+        getPrices();
+        buyPrices();
+       sellPrices();
+    }, [quote]);
 
     return (
         <div>
@@ -64,7 +100,6 @@ const [activeTab,setActiveTab] = useState(0)
                                 <div data-v-64a9250c>
                                     <div
                                         className="v-item-group elevation-0 pa-1 theme--light v-btn-toggle v-btn-toggle--only-child v-btn-toggle--selected"
-                                        full-width
                                     >
                                         <button
                                             type="button"
@@ -131,230 +166,17 @@ const [activeTab,setActiveTab] = useState(0)
                                                 </thead>
                                                 {activeTab === 0 && (
                                                 <tbody>
-                                                <tr data-v-64a9250c className="trade-sell text-xs-right">
-                                                    <td data-v-64a9250c>0.00000058</td>{" "}
-                                                    <td data-v-64a9250c>177.00000000</td>{" "}
-                                                    <td data-v-64a9250c className="text-xs-right">
-                                                        18:18:13
-                                                    </td>
-                                                </tr>
-                                                <tr data-v-64a9250c className="buy-sell text-xs-right">
-                                                    <td data-v-64a9250c>0.00000081</td>{" "}
-                                                    <td data-v-64a9250c>1,500.00000000</td>{" "}
-                                                    <td data-v-64a9250c className="text-xs-right">
-                                                        17:22:24
-                                                    </td>
-                                                </tr>
-                                                <tr data-v-64a9250c className="trade-sell text-xs-right">
-                                                    <td data-v-64a9250c>0.00000058</td>{" "}
-                                                    <td data-v-64a9250c>177.00000000</td>{" "}
-                                                    <td data-v-64a9250c className="text-xs-right">
-                                                        17:00:49
-                                                    </td>
-                                                </tr>
-                                                <tr data-v-64a9250c className="buy-sell text-xs-right">
-                                                    <td data-v-64a9250c>0.00000079</td>{" "}
-                                                    <td data-v-64a9250c>103,178.00000000</td>{" "}
-                                                    <td data-v-64a9250c className="text-xs-right">
-                                                        14:01:12
-                                                    </td>
-                                                </tr>
-                                                <tr data-v-64a9250c className="buy-sell text-xs-right">
-                                                    <td data-v-64a9250c>0.00000079</td>{" "}
-                                                    <td data-v-64a9250c>75,056.00000000</td>{" "}
-                                                    <td data-v-64a9250c className="text-xs-right">
-                                                        13:11:29
-                                                    </td>
-                                                </tr>
-                                                <tr data-v-64a9250c className="buy-sell text-xs-right">
-                                                    <td data-v-64a9250c>0.00000078</td>{" "}
-                                                    <td data-v-64a9250c>115,000.00000000</td>{" "}
-                                                    <td data-v-64a9250c className="text-xs-right">
-                                                        13:09:30
-                                                    </td>
-                                                </tr>
-                                                <tr data-v-64a9250c className="buy-sell text-xs-right">
-                                                    <td data-v-64a9250c>0.00000077</td>{" "}
-                                                    <td data-v-64a9250c>147,800.00000000</td>{" "}
-                                                    <td data-v-64a9250c className="text-xs-right">
-                                                        13:09:29
-                                                    </td>
-                                                </tr>
-                                                <tr data-v-64a9250c className="buy-sell text-xs-right">
-                                                    <td data-v-64a9250c>0.00000074</td>{" "}
-                                                    <td data-v-64a9250c>263,360.00000000</td>{" "}
-                                                    <td data-v-64a9250c className="text-xs-right">
-                                                        13:09:29
-                                                    </td>
-                                                </tr>
-                                                <tr data-v-64a9250c className="buy-sell text-xs-right">
-                                                    <td data-v-64a9250c>0.00000072</td>{" "}
-                                                    <td data-v-64a9250c>158,000.00000000</td>{" "}
-                                                    <td data-v-64a9250c className="text-xs-right">
-                                                        13:09:28
-                                                    </td>
-                                                </tr>
-                                                <tr data-v-64a9250c className="buy-sell text-xs-right">
-                                                    <td data-v-64a9250c>0.00000070</td>{" "}
-                                                    <td data-v-64a9250c>62,768.00000000</td>{" "}
-                                                    <td data-v-64a9250c className="text-xs-right">
-                                                        13:09:28
-                                                    </td>
-                                                </tr>
-                                                <tr data-v-64a9250c className="buy-sell text-xs-right">
-                                                    <td data-v-64a9250c>0.00000069</td>{" "}
-                                                    <td data-v-64a9250c>36,082.00000000</td>{" "}
-                                                    <td data-v-64a9250c className="text-xs-right">
-                                                        13:09:28
-                                                    </td>
-                                                </tr>
-                                                <tr data-v-64a9250c className="trade-sell text-xs-right">
-                                                    <td data-v-64a9250c>0.00000058</td>{" "}
-                                                    <td data-v-64a9250c>177.00000000</td>{" "}
-                                                    <td data-v-64a9250c className="text-xs-right">
-                                                        11:58:33
-                                                    </td>
-                                                </tr>
-                                                <tr data-v-64a9250c className="buy-sell text-xs-right">
-                                                    <td data-v-64a9250c>0.00000070</td>{" "}
-                                                    <td data-v-64a9250c>35,470.00000000</td>{" "}
-                                                    <td data-v-64a9250c className="text-xs-right">
-                                                        Apr 01 2020
-                                                    </td>
-                                                </tr>
-                                                <tr data-v-64a9250c className="buy-sell text-xs-right">
-                                                    <td data-v-64a9250c>0.00000069</td>{" "}
-                                                    <td data-v-64a9250c>1,174,978.00000000</td>{" "}
-                                                    <td data-v-64a9250c className="text-xs-right">
-                                                        Apr 01 2020
-                                                    </td>
-                                                </tr>
-                                                <tr data-v-64a9250c className="buy-sell text-xs-right">
-                                                    <td data-v-64a9250c>0.00000068</td>{" "}
-                                                    <td data-v-64a9250c>322,747.00000000</td>{" "}
-                                                    <td data-v-64a9250c className="text-xs-right">
-                                                        Apr 01 2020
-                                                    </td>
-                                                </tr>
-                                                <tr data-v-64a9250c className="buy-sell text-xs-right">
-                                                    <td data-v-64a9250c>0.00000067</td>{" "}
-                                                    <td data-v-64a9250c>35,722.00000000</td>{" "}
-                                                    <td data-v-64a9250c className="text-xs-right">
-                                                        Apr 01 2020
-                                                    </td>
-                                                </tr>
-                                                <tr data-v-64a9250c className="buy-sell text-xs-right">
-                                                    <td data-v-64a9250c>0.00000067</td>{" "}
-                                                    <td data-v-64a9250c>400,000.00000000</td>{" "}
-                                                    <td data-v-64a9250c className="text-xs-right">
-                                                        Apr 01 2020
-                                                    </td>
-                                                </tr>
-                                                <tr data-v-64a9250c className="buy-sell text-xs-right">
-                                                    <td data-v-64a9250c>0.00000068</td>{" "}
-                                                    <td data-v-64a9250c>50,000.00000000</td>{" "}
-                                                    <td data-v-64a9250c className="text-xs-right">
-                                                        Mar 31 2020
-                                                    </td>
-                                                </tr>
-                                                <tr data-v-64a9250c className="trade-sell text-xs-right">
-                                                    <td data-v-64a9250c>0.00000056</td>{" "}
-                                                    <td data-v-64a9250c>178.58000000</td>{" "}
-                                                    <td data-v-64a9250c className="text-xs-right">
-                                                        Mar 30 2020
-                                                    </td>
-                                                </tr>
-                                                <tr data-v-64a9250c className="buy-sell text-xs-right">
-                                                    <td data-v-64a9250c>0.00000069</td>{" "}
-                                                    <td data-v-64a9250c>25,000.00000000</td>{" "}
-                                                    <td data-v-64a9250c className="text-xs-right">
-                                                        Mar 30 2020
-                                                    </td>
-                                                </tr>
-                                                <tr data-v-64a9250c className="buy-sell text-xs-right">
-                                                    <td data-v-64a9250c>0.00000068</td>{" "}
-                                                    <td data-v-64a9250c>50,000.00000000</td>{" "}
-                                                    <td data-v-64a9250c className="text-xs-right">
-                                                        Mar 30 2020
-                                                    </td>
-                                                </tr>
-                                                <tr data-v-64a9250c className="buy-sell text-xs-right">
-                                                    <td data-v-64a9250c>0.00000067</td>{" "}
-                                                    <td data-v-64a9250c>150,000.00000000</td>{" "}
-                                                    <td data-v-64a9250c className="text-xs-right">
-                                                        Mar 30 2020
-                                                    </td>
-                                                </tr>
-                                                <tr data-v-64a9250c className="buy-sell text-xs-right">
-                                                    <td data-v-64a9250c>0.00000067</td>{" "}
-                                                    <td data-v-64a9250c>50,000.00000000</td>{" "}
-                                                    <td data-v-64a9250c className="text-xs-right">
-                                                        Mar 30 2020
-                                                    </td>
-                                                </tr>
-                                                <tr data-v-64a9250c className="buy-sell text-xs-right">
-                                                    <td data-v-64a9250c>0.00000067</td>{" "}
-                                                    <td data-v-64a9250c>200,000.00000000</td>{" "}
-                                                    <td data-v-64a9250c className="text-xs-right">
-                                                        Mar 30 2020
-                                                    </td>
-                                                </tr>
-                                                <tr data-v-64a9250c className="buy-sell text-xs-right">
-                                                    <td data-v-64a9250c>0.00000068</td>{" "}
-                                                    <td data-v-64a9250c>225,000.00000000</td>{" "}
-                                                    <td data-v-64a9250c className="text-xs-right">
-                                                        Mar 29 2020
-                                                    </td>
-                                                </tr>
-                                                <tr data-v-64a9250c className="buy-sell text-xs-right">
-                                                    <td data-v-64a9250c>0.00000068</td>{" "}
-                                                    <td data-v-64a9250c>50,000.00000000</td>{" "}
-                                                    <td data-v-64a9250c className="text-xs-right">
-                                                        Mar 29 2020
-                                                    </td>
-                                                </tr>
-                                                <tr data-v-64a9250c className="buy-sell text-xs-right">
-                                                    <td data-v-64a9250c>0.00000068</td>{" "}
-                                                    <td data-v-64a9250c>50,000.00000000</td>{" "}
-                                                    <td data-v-64a9250c className="text-xs-right">
-                                                        Mar 29 2020
-                                                    </td>
-                                                </tr>
-                                                <tr data-v-64a9250c className="buy-sell text-xs-right">
-                                                    <td data-v-64a9250c>0.00000068</td>{" "}
-                                                    <td data-v-64a9250c>50,000.00000000</td>{" "}
-                                                    <td data-v-64a9250c className="text-xs-right">
-                                                        Mar 29 2020
-                                                    </td>
-                                                </tr>
-                                                <tr data-v-64a9250c className="trade-sell text-xs-right">
-                                                    <td data-v-64a9250c>0.00000060</td>{" "}
-                                                    <td data-v-64a9250c>1,639,833.33100000</td>{" "}
-                                                    <td data-v-64a9250c className="text-xs-right">
-                                                        Mar 25 2020
-                                                    </td>
-                                                </tr>
-                                                <tr data-v-64a9250c className="trade-sell text-xs-right">
-                                                    <td data-v-64a9250c>0.00000070</td>{" "}
-                                                    <td data-v-64a9250c>212,857.14100000</td>{" "}
-                                                    <td data-v-64a9250c className="text-xs-right">
-                                                        Mar 25 2020
-                                                    </td>
-                                                </tr>
-                                                <tr data-v-64a9250c className="trade-sell text-xs-right">
-                                                    <td data-v-64a9250c>0.00000070</td>{" "}
-                                                    <td data-v-64a9250c>142.85900000</td>{" "}
-                                                    <td data-v-64a9250c className="text-xs-right">
-                                                        Mar 24 2020
-                                                    </td>
-                                                </tr>
-                                                <tr data-v-64a9250c className="buy-sell text-xs-right">
-                                                    <td data-v-64a9250c>0.00000078</td>{" "}
-                                                    <td data-v-64a9250c>160,000.00000000</td>{" "}
-                                                    <td data-v-64a9250c className="text-xs-right">
-                                                        Mar 24 2020
-                                                    </td>
-                                                </tr>
+                                                {data && data.length > 0 && data.map((item, key) => {
+                                                    return (
+                                                        <tr data-v-64a9250c className={item.side === "buy" ? "buy-sell text-xs-right":"trade-sell text-xs-right"} key={key}>
+                                                            <td data-v-64a9250c>{financial(item.price)}</td>
+                                                            <td data-v-64a9250c>{item.amountReceived}</td>
+                                                            <td data-v-64a9250c className="text-xs-right">
+                                                                {moment(item.blockTimestamp).format('LL')}
+                                                            </td>
+                                                        </tr>
+                                                    )
+                                                })}
 
                                                 </tbody> )}
                                                 {activeTab === 1 && (
@@ -420,17 +242,26 @@ const [activeTab,setActiveTab] = useState(0)
                                                             </tr>
                                                             </thead>
                                                             <tbody>
-                                                            <tr className="text-xs-right">
-                                                                <td className id="buyOrderBaseMeasure">
+                                                            {buyData && buyData.length > 0 && buyData.map((item, key) => {
+                                                                return(
+                                                            <tr className="text-xs-right" key={key}>
+                                                                <td  id="buyOrderBaseMeasure">
                                                                     450.00000000
-                                                                </td>{" "}
-                                                                <td>450.00000000</td>{" "}
+                                                                </td>
+                                                                <td>450.00000000</td>
                                                                 <td>
                                                                     <Link to="#" className="buy">
-                                                                        0.00000300
+                                                                        {financial(item.price)}
                                                                     </Link>
                                                                 </td>
                                                             </tr>
+                                                                    )})}
+                                                                    {buyData && buyData.length === 0 && (
+                                                                <tr>
+                                                                    <td colSpan="3" className="text-xs-center">No data found!
+                                                                    </td>
+                                                                </tr>
+                                                            )}
                                                             </tbody>
                                                         </table>
                                                     </div>
@@ -480,174 +311,25 @@ const [activeTab,setActiveTab] = useState(0)
                                                             </tr>
                                                             </thead>
                                                             <tbody>
-                                                            <tr className="text-xs-right">
-                                                                <td className id="sellOrderBaseMeasure">
-                                                                    <Link to="#" className="sell">
-                                                                        0.00002950
-                                                                    </Link>
-                                                                </td>{" "}
-                                                                <td>20,000.00000000</td> <td>20,000.00000000</td>
-                                                            </tr>
-                                                            <tr className="text-xs-right">
-                                                                <td>
-                                                                    <Link to="#" className="sell">
-                                                                        0.00003000
-                                                                    </Link>
-                                                                </td>{" "}
-                                                                <td>21,549.00000000</td> <td>1,549.00000000</td>
-                                                            </tr>
-                                                            <tr className="text-xs-right">
-                                                                <td>
-                                                                    <Link to="#" className="sell">
-                                                                        0.00003600
-                                                                    </Link>
-                                                                </td>{" "}
-                                                                <td>41,549.00000000</td> <td>20,000.00000000</td>
-                                                            </tr>
-                                                            <tr className="text-xs-right">
-                                                                <td>
-                                                                    <Link to="#" className="sell">
-                                                                        0.00004000
-                                                                    </Link>
-                                                                </td>{" "}
-                                                                <td>42,549.00000000</td> <td>1,000.00000000</td>
-                                                            </tr>
-                                                            <tr className="text-xs-right">
-                                                                <td>
-                                                                    <Link to="#" className="sell">
-                                                                        0.00006000
-                                                                    </Link>
-                                                                </td>{" "}
-                                                                <td>62,549.00000000</td> <td>20,000.00000000</td>
-                                                            </tr>
-                                                            <tr className="text-xs-right">
-                                                                <td>
-                                                                    <Link to="#" className="sell">
-                                                                        0.00042600
-                                                                    </Link>
-                                                                </td>{" "}
-                                                                <td>67,549.00000000</td> <td>5,000.00000000</td>
-                                                            </tr>
-                                                            <tr className="text-xs-right">
-                                                                <td>
-                                                                    <Link to="#" className="sell">
-                                                                        0.00042740
-                                                                    </Link>
-                                                                </td>{" "}
-                                                                <td>97,549.00000000</td> <td>30,000.00000000</td>
-                                                            </tr>
-                                                            <tr className="text-xs-right">
-                                                                <td>
-                                                                    <Link to="#" className="sell">
-                                                                        0.00043480
-                                                                    </Link>
-                                                                </td>{" "}
-                                                                <td>101,549.00000000</td> <td>4,000.00000000</td>
-                                                            </tr>
-                                                            <tr className="text-xs-right">
-                                                                <td>
-                                                                    <Link to="#" className="sell">
-                                                                        0.00043497
-                                                                    </Link>
-                                                                </td>{" "}
-                                                                <td>123,719.70000000</td> <td>22,170.70000000</td>
-                                                            </tr>
-                                                            <tr className="text-xs-right">
-                                                                <td>
-                                                                    <Link to="#" className="sell">
-                                                                        0.00043500
-                                                                    </Link>
-                                                                </td>{" "}
-                                                                <td>123,904.70000000</td> <td>185.00000000</td>
-                                                            </tr>
-                                                            <tr className="text-xs-right">
-                                                                <td>
-                                                                    <Link to="#" className="sell">
-                                                                        0.00044840
-                                                                    </Link>
-                                                                </td>{" "}
-                                                                <td>123,967.31615197</td> <td>62.61615197</td>
-                                                            </tr>
-                                                            <tr className="text-xs-right">
-                                                                <td>
-                                                                    <Link href="#" className="sell">
-                                                                        0.00049000
-                                                                    </Link>
-                                                                </td>{" "}
-                                                                <td>123,975.71615197</td> <td>8.40000000</td>
-                                                            </tr>
-                                                            <tr className="text-xs-right">
-                                                                <td>
-                                                                    <Link to="#" className="sell">
-                                                                        0.00052989
-                                                                    </Link>
-                                                                </td>{" "}
-                                                                <td>141,876.71560598</td> <td>17,900.99945401</td>
-                                                            </tr>
-                                                            <tr className="text-xs-right">
-                                                                <td>
-                                                                    <Link to="#" className="sell">
-                                                                        0.00052990
-                                                                    </Link>
-                                                                </td>{" "}
-                                                                <td>151,876.71560598</td> <td>10,000.00000000</td>
-                                                            </tr>
-                                                            <tr className="text-xs-right">
-                                                                <td>
-                                                                    <Link to="#" className="sell">
-                                                                        0.00054990
-                                                                    </Link>
-                                                                </td>{" "}
-                                                                <td>161,876.71560598</td> <td>10,000.00000000</td>
-                                                            </tr>
-                                                            <tr className="text-xs-right">
-                                                                <td>
-                                                                    <Link to="#" className="sell">
-                                                                        0.00056330
-                                                                    </Link>
-                                                                </td>{" "}
-                                                                <td>162,876.71560598</td> <td>1,000.00000000</td>
-                                                            </tr>
-                                                            <tr className="text-xs-right">
-                                                                <td>
-                                                                    <Link href="#" className="sell">
-                                                                        0.00056990
-                                                                    </Link>
-                                                                </td>{" "}
-                                                                <td>172,876.71560598</td> <td>10,000.00000000</td>
-                                                            </tr>
-                                                            <tr className="text-xs-right">
-                                                                <td>
-                                                                    <Link to="#" className="sell">
-                                                                        0.00058990
-                                                                    </Link>
-                                                                </td>{" "}
-                                                                <td>182,876.71560598</td> <td>10,000.00000000</td>
-                                                            </tr>
-                                                            <tr className="text-xs-right">
-                                                                <td>
-                                                                    <Link href="#" className="sell">
-                                                                        0.00060000
-                                                                    </Link>
-                                                                </td>{" "}
-                                                                <td>202,876.71560598</td> <td>20,000.00000000</td>
-                                                            </tr>
-                                                            <tr className="text-xs-right">
-                                                                <td>
-                                                                    <Link href="#" className="sell">
-                                                                        0.00062000
-                                                                    </Link>
-                                                                </td>{" "}
-                                                                <td>239,202.71560598</td> <td>36,326.00000000</td>
-                                                            </tr>
-                                                            <tr className="text-xs-right">
-                                                                <td>
-                                                                    <Link href="#" className="sell">
-                                                                        69.00000000
-                                                                    </Link>
-                                                                </td>{" "}
-                                                                <td>239,203.71560598</td> <td>1.00000000</td>
-                                                            </tr>
+                                                            {sellData && sellData.length > 0 && sellData.map((item, key) => {
+                                                                return(
+                                                                    <tr className="text-xs-right" key={key}>
+                                                                        <td className id="sellOrderBaseMeasure">
+                                                                            <Link to="#" className="sell">
+                                                                               {financial(item.price)}
+                                                                            </Link>
+                                                                        </td>
+                                                                        {" "}
+                                                                        <td>20,000.00000000</td>
+                                                                        <td>20,000.00000000</td>
+                                                                    </tr>
+                                                                )})}
+                                                            {sellData && sellData.length === 0 && (
+                                                                <tr>
+                                                                    <td colSpan="3" className="text-xs-center">No data found!
+                                                                    </td>
+                                                                </tr>
+                                                            )}
                                                             </tbody>
                                                         </table>
                                                     </div>
@@ -664,7 +346,7 @@ const [activeTab,setActiveTab] = useState(0)
                                 <div>
                                     <div
                                         className="v-item-group elevation-0 pa-1 theme--light v-btn-toggle v-btn-toggle--only-child v-btn-toggle--selected"
-                                        full-width
+                                        full-width={"true"}
                                     >
                                         <button
                                             type="button"
@@ -832,7 +514,6 @@ const [activeTab,setActiveTab] = useState(0)
                                 <div>
                                     <div
                                         className="v-item-group elevation-0 pa-1 theme--light v-btn-toggle v-btn-toggle--only-child v-btn-toggle--selected"
-                                        full-width
                                     >
                                         <button
                                             type="button"

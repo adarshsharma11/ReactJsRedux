@@ -20,7 +20,7 @@ const Root = props => {
                     <Route exact path="/help" render={() => (
                         <Help/>
                     )}/>
-                    <Route exact path="/trade" render={() => (
+                    <Route exact path="/trade/:quote/:base" render={() => (
                         <Trade/>
                     )}/>
                     <Route exact path="/legal" render={() => (
