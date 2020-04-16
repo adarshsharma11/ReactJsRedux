@@ -17,15 +17,9 @@ const Home = props => {
         let response = await fetch(DEX_API_URL_TEST + 'public/pricing/all?start=1549022400000&end=1549022400000&limit=10&resolution=24h')
         let result = await response.json();
         //console.log(result, 'ress')
-<<<<<<< HEAD
        /* const selectedTokens = ['UDOO', 'FLASH', 'HST', 'PEG']
         const balances = result.filter(ticker => !selectedTokens.includes(ticker.quoteTicker))*/
         setData(result)
-=======
-        const selectedTokens = ['UDOO', 'FLASH', 'HST']
-        const balances = result.filter(ticker => !selectedTokens.includes(ticker.quoteTicker))
-        setData(balances)
->>>>>>> ef966a7ca65d955d6311e49fa801abc8791bc453
     }
 
 //get crypto price in usd/ETH
@@ -167,11 +161,11 @@ const Home = props => {
                                                         onClick={() => sort("last")}
                                                         className="column sortable text-xs-right"
                                                     >
-                                                        { sortBy === "ASC" && (
+                                                        { sortBy === "DESC" && (
                                                         < MdArrowUpward size={"16"} className="v-icon"
                                                         />
                                                     )}
-                                                        { sortBy === "DESC" && (
+                                                        { sortBy === "ASC" && (
                                                             < MdArrowDownward size={"16"} className="v-icon"
                                                             />
                                                         )}
@@ -187,11 +181,11 @@ const Home = props => {
                                                         onClick={() => sort("usd")}
                                                         className="column sortable text-xs-right"
                                                     >
-                                                        { sortBy === "ASC" && (
+                                                        { sortBy === "DESC" && (
                                                         <MdArrowUpward size={"16"} className="v-icon"
                                                         />
                                                     )}
-                                                        { sortBy === "DESC" && (
+                                                        { sortBy === "ASC" && (
                                                             <MdArrowDownward size={"16"} className="v-icon"
                                                             />
                                                         )}
@@ -206,11 +200,11 @@ const Home = props => {
                                                         onClick={() => sort("percent")}
                                                         className="column sortable text-xs-right"
                                                     >
-                                                        { sortBy === "ASC" && (
+                                                        { sortBy === "DESC" && (
                                                         <MdArrowUpward size={"16"} className="v-icon"
                                                         />
                                                         )}
-                                                        { sortBy === "DESC" && (
+                                                        { sortBy === "ASC" && (
                                                             <MdArrowDownward size={"16"} className="v-icon"
                                                             />
                                                         )}
@@ -225,11 +219,11 @@ const Home = props => {
                                                         onClick={() => sort("24hourHigh")}
                                                         className="column sortable text-xs-right"
                                                     >
-                                                        { sortBy === "ASC" && (
+                                                        { sortBy === "DESC" && (
                                                         <MdArrowUpward size={"16"} className="v-icon"
                                                         />
                                                         )}
-                                                        { sortBy === "DESC" && (
+                                                        { sortBy === "ASC" && (
                                                             <MdArrowDownward size={"16"} className="v-icon"
                                                             />
                                                         )}
@@ -244,11 +238,11 @@ const Home = props => {
                                                         onClick={() => sort("24hourLow")}
                                                         className="column sortable text-xs-right"
                                                     >
-                                                        { sortBy === "ASC" && (
+                                                        { sortBy === "DESC" && (
                                                             <MdArrowUpward size={"16"} className="v-icon"
                                                             />
                                                         )}
-                                                        { sortBy === "DESC" && (
+                                                        { sortBy === "ASC" && (
                                                             <MdArrowDownward size={"16"} className="v-icon"
                                                             />
                                                         )}
@@ -263,11 +257,11 @@ const Home = props => {
                                                         onClick={() => sort("24hourVolume")}
                                                         className="column sortable  desc text-xs-right"
                                                     >
-                                                        { sortBy === "ASC" && (
+                                                        { sortBy === "DESC" && (
                                                             <MdArrowUpward size={"16"} className="v-icon"
                                                             />
                                                         )}
-                                                        { sortBy === "DESC" && (
+                                                        { sortBy === "ASC" && (
                                                             <MdArrowDownward size={"16"} className="v-icon"
                                                             />
                                                         )}
