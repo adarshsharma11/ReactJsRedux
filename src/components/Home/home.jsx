@@ -16,9 +16,6 @@ const Home = props => {
     async function getPrices() {
         let response = await fetch(DEX_API_URL_TEST + 'public/pricing/all?start=1549022400000&end=1549022400000&limit=10&resolution=24h')
         let result = await response.json();
-        //console.log(result, 'ress')
-       /* const selectedTokens = ['UDOO', 'FLASH', 'HST', 'PEG']
-        const balances = result.filter(ticker => !selectedTokens.includes(ticker.quoteTicker))*/
         setData(result)
     }
 

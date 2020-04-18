@@ -246,9 +246,9 @@ const  Trade = props => {
                                                                 return(
                                                             <tr className="text-xs-right" key={key}>
                                                                 <td  id="buyOrderBaseMeasure">
-                                                                    450.00000000
+                                                                    {item.available}
                                                                 </td>
-                                                                <td>450.00000000</td>
+                                                                <td>{item.available}</td>
                                                                 <td>
                                                                     <Link to="#" className="buy">
                                                                         {financial(item.price)}
@@ -320,8 +320,8 @@ const  Trade = props => {
                                                                             </Link>
                                                                         </td>
                                                                         {" "}
-                                                                        <td>20,000.00000000</td>
-                                                                        <td>20,000.00000000</td>
+                                                                        <td>{item.available}</td>
+                                                                        <td>{item.available}</td>
                                                                     </tr>
                                                                 )})}
                                                             {sellData && sellData.length === 0 && (
