@@ -1,24 +1,9 @@
-import React,{useState} from 'react';
-import Aside from "../Layout/Aside/aside";
+import React from 'react';
 
 
 const  Legal = props => {
-
-    const [width, setWidth] = useState( 225 )
-    const handleOnClick = () => {
-        let newWidth = width === 225 ? 105 : 225
-        setWidth(newWidth)
-    }
-
     return (
-        <div>
-            <Aside onClick={handleOnClick} width={width}/>
-            <main
-                className="v-content"
-                data-booted="true"
-                style={{padding: width === 225 ? "64px 0px 32px 225px" : "64px 0px 32px 105px"}}
-            >
-                <div className="v-content__wrap">
+        <div className="v-content__wrap">
                     <div
                         data-v-f53b369e
                         className="container fill-height fluid hide-overflow"
@@ -49,8 +34,6 @@ const  Legal = props => {
                         </div>
                     </div>
                 </div>
-            </main>;
-        </div>
     );
 }
 export default Legal;

@@ -4,9 +4,7 @@ import history from "../store/history";
 import { connect } from "react-redux";
 import Home from "../components/Home/home";
 import Layout from "../components/Layout/layout";
-import Help from "../components/Help/help";
-import Trade from "../components/Trade/trade";
-import Legal from "../components/Legal/legal";
+import Default from "../components/Layout/Default/default";
 
 const Root = props => {
     return (
@@ -18,13 +16,13 @@ const Root = props => {
                         <Home/>
                     )}/>
                     <Route exact path="/help" render={() => (
-                        <Help/>
+                        <Default/>
                     )}/>
                     <Route exact path="/trade/:quote/:base" render={() => (
-                        <Trade/>
+                        <Default/>
                     )}/>
                     <Route exact path="/legal" render={() => (
-                        <Legal/>
+                        <Default/>
                     )}/>
                 </Switch>
             </div>

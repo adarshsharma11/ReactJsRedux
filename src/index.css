@@ -18,7 +18,9 @@ body,html{overflow-y:auto}.swing-transition{transition:.2s cubic-bezier(.25,.8,.
 .v-menu--inline {
     display: block !important;
 }
-
+.application--wrap {
+    fontFamily: 'Roboto',
+}
 /*.v-footer--absolute {
      position:absolute;
      left:0;

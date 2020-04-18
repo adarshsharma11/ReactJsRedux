@@ -1,11 +1,10 @@
 import React, {useEffect, useState} from 'react';
-import Aside from "../Layout/Aside/aside";
 import { Link } from 'react-router-dom';
 import { useParams} from "react-router";
 import {MdKeyboardArrowLeft,MdKeyboardArrowDown,MdKeyboardArrowRight} from "react-icons/md"
 import TradingViewWidget, { Themes } from 'react-tradingview-widget';
 import {DEX_API_URL} from "../../helpers/constants/constants";
-import {financial, trade} from "../../helpers/constants/helpers";
+import {amount, financial, trade} from "../../helpers/constants/helpers";
 import moment from "moment";
 
 const  Trade = props => {
@@ -14,15 +13,10 @@ const  Trade = props => {
     const [data, setData] = useState([])
     const [buyData, setBuyData] = useState([])
     const [sellData, setSellData] = useState([])
-    const [width, setWidth] = useState( 225 )
     const {base,quote}= useParams();
 
     const handleTab = (index) => {
         setActiveTab(index)
-    }
-    const handleOnClick = () => {
-        let newWidth = width === 225 ? 105 : 225
-        setWidth(newWidth)
     }
     //get pair dex press list
     async function getPrices() {
@@ -54,13 +48,6 @@ const  Trade = props => {
     }, [quote]);
 
     return (
-        <div>
-            <Aside onClick={handleOnClick} width={width}/>
-        <main
-            className="v-content"
-            data-booted="true"
-            style={{padding: width === 225 ? "64px 0px 32px 225px" : "64px 0px 32px 105px"}}
-        >
             <div className="v-content__wrap">
                 <div className="container fluid grid-list-md pa-2">
                     <div className="layout wrap">
@@ -177,7 +164,6 @@ const  Trade = props => {
                                                         </tr>
                                                     )
                                                 })}
-
                                                 </tbody> )}
                                                 {activeTab === 1 && (
                                                 <tbody className="__web-inspector-hide-shortcut__">
@@ -246,9 +232,9 @@ const  Trade = props => {
                                                                 return(
                                                             <tr className="text-xs-right" key={key}>
                                                                 <td  id="buyOrderBaseMeasure">
-                                                                    {item.amountGet}
+                                                                    {amount(item.amountGet)}
                                                                 </td>
-                                                                <td>{item.available}</td>
+                                                                <td>{amount(item.available)}</td>
                                                                 <td>
                                                                     <Link to="#" className="buy">
                                                                         {financial(item.price)}
@@ -691,8 +677,7 @@ const  Trade = props => {
                     <div />
                 </div>
             </div>
-        </main>
-        </div>
+
     );
 }
 export default Trade;

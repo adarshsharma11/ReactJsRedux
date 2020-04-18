@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {Link} from 'react-router-dom';
+import { useParams} from "react-router";
 import {MdSearch, MdKeyboardArrowLeft, MdKeyboardArrowDown, MdKeyboardArrowRight} from "react-icons/md"
 import 'react-dropdown/style.css';
 import {DEX_API_URL_TEST} from "../../../helpers/constants/constants";
@@ -10,13 +11,12 @@ const Aside = props => {
     const [data, setData] = useState([])
     const [filterData, setFilterData] = useState([])
     const [label, setLabel] = useState(false)
+    const {quote}= useParams();
 
     //get pairs price list
     async function getPrices() {
         let response = await fetch(DEX_API_URL_TEST + 'public/pricing/all?start=1549022400000&end=1549022400000&limit=10&resolution=24h')
         let result = await response.json();
-       /* const selectedTokens = ['UDOO', 'FLASH', 'HST', 'PEG']
-        const balances = result.filter(ticker => !selectedTokens.includes(ticker.quoteTicker))*/
         setData(result)
         setFilterData(result)
     }
@@ -106,7 +106,7 @@ const Aside = props => {
                                     return (
                                         <Link
                                             to={{pathname:"/trade/"+item.quoteTicker+"/"+ item.baseTicker,state:{item}}}
-                                            className="px-3 py-1 hide-overflow v-card v-card--flat v-card--tile theme--light"
+                                            className={item.quoteTicker === quote ? "px-3 py-1 hide-overflow grey lighten-3 v-card v-card--flat v-card--tile theme--light":"px-3 py-1 hide-overflow v-card v-card--flat v-card--tile theme--light"}
                                             key={key}
                                         >
                                             <div className="layout">
