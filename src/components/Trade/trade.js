@@ -84,7 +84,7 @@ const  Trade = props => {
                                 style={{ height: "100%" }}
                             >
                                 {/**/}{" "}
-                                <div data-v-64a9250c>
+                                <div>
                                     <div
                                         className="v-item-group elevation-0 pa-1 theme--light v-btn-toggle v-btn-toggle--only-child v-btn-toggle--selected"
                                     >
@@ -151,29 +151,27 @@ const  Trade = props => {
                                                     <th colSpan={3} className="column" />
                                                 </tr>
                                                 </thead>
-                                                {activeTab === 0 && (
-                                                <tbody>
-                                                {data && data.length > 0 && data.map((item, key) => {
+                                                <tbody className="__web-inspector-hide-shortcut__">
+                                                {activeTab === 0 && data && data.length > 0 && data.map((item, key) => {
                                                     return (
                                                         <tr data-v-64a9250c className={item.side === "buy" ? "buy-sell text-xs-right":"trade-sell text-xs-right"} key={key}>
                                                             <td data-v-64a9250c>{financial(item.price)}</td>
-                                                            <td data-v-64a9250c>{trade(item.amountReceived)}</td>
+                                                            <td data-v-64a9250c>{item.side === "buy" ? trade(item.amountSent) :trade(item.amountReceived)}</td>
                                                             <td data-v-64a9250c className="text-xs-right">
                                                                 {moment(item.blockTimestamp).format('LL')}
                                                             </td>
                                                         </tr>
                                                     )
                                                 })}
-                                                </tbody> )}
                                                 {activeTab === 1 && (
-                                                <tbody className="__web-inspector-hide-shortcut__">
-                                                <tr>
-                                                    <td colSpan="3" className="text-xs-center">Please login to view your
-                                                        trades
-                                                    </td>
-                                                </tr>
-                                                </tbody>
+                                                    <tr>
+                                                        <td colSpan="3" className="text-xs-center">Please login to view your
+                                                            trades
+                                                        </td>
+                                                    </tr>
                                                 )}
+                                                </tbody>
+
                                             </table>
                                         </div>
                                     </div>
@@ -307,7 +305,7 @@ const  Trade = props => {
                                                                         </td>
                                                                         {" "}
                                                                         <td>{item.amountGet}</td>
-                                                                        <td>{item.available}</td>
+                                                                        <td>{trade(item.amountGive.slice(0, 8))}</td>
                                                                     </tr>
                                                                 )})}
                                                             {sellData && sellData.length === 0 && (
