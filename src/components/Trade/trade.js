@@ -305,7 +305,7 @@ const  Trade = props => {
                                                                         </td>
                                                                         {" "}
                                                                         <td>{item.amountGet}</td>
-                                                                        <td>{trade(item.amountGive.slice(0, 8))}</td>
+                                                                        <td>{amount(item.amountGive)}</td>
                                                                     </tr>
                                                                 )})}
                                                             {sellData && sellData.length === 0 && (
